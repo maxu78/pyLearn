@@ -37,12 +37,41 @@ print(os.path.getsize("D:/forum-master/pom.xml"));
 print(os.stat("D:/forum-master/pom.xml"));
 
 # ----------------------------------------------------------------------------------------------------------------------
-# 创建新文件(windows没有node概念,会报错)
-# os.mknod("D:/test123/test.txt");
-# 直接打开一个文件，如果文件不存在则创建文件
-fp = open("D:/test123/test.txt", "w");
-# 向文件中写入数据
-print(fp.write("123"));
+try:
+    # 创建新文件(windows没有node概念,会报错)
+    # os.mknod("D:/test123/test.txt");
+    # w: 如果没有这个文件，就创建一个；如果有，那么就会先把原文件的内容清空再写入新的东西
+    # a: 直接在后面追加新的内容
+    fp = open("D:/test123/test.txt", "r");
+    # 向文件中写入数据
+    # print(fp.write("123987"));
+    # print(fp.writelines("98745613"));
+    # print(fp.writelines("987654321.210"));
+    # fp.flush();
+    # 读取对应字符长度的数据
+    # print(fp.read(20));
+    # print(fp.read(10));
+    # 读取某一行对应字符的长度
+    # print(fp.readline());
+    # print(fp.readline());
+
+finally:
+    fp.close();
+# 上述文件读写可以缩写
+with open("D:/test123/test.txt", "r") as f:
+    print(f.read());
+# ----------------------------------------------------------------------------------------------------------------------
+# 把一个文件copy到另一个文件(两个都只能是文件)
+print(shutil.copyfile("D:/test123/test.txt", "D:/test123/test11.txt"));
+# 把一个文件copy到另一个文件夹下(copy2可以同时复制访问和修改时间)
+print(shutil.copy("D:/test123/test.txt", "D:/test124/"));
+# 复制文件夹(目标文件夹不存在)
+# print(shutil.copytree("D:/test123", "D:/test125/"));
+# 复制文件夹(放到目标文件夹底下)
+# print(shutil.move("D:/test123", "D:/test124"));
+# 重名名(文件或文件夹)
+print(os.rename("D:/test123", "D:/test125"));
+
 
 
 
